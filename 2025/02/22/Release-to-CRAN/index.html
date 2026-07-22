@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Release to CRAN | DSpace</title><meta name="author" content="Songdi Hu"><meta name="copyright" content="Songdi Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="How to Release an R Package to CRANBackgroundThe last few months, I’ve been focused on developing and releasing an R package. This toolkit was created based on a study by Dr. Romanescu. Many newcomers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Release to CRAN">
+<meta property="og:url" content="https://songdihu.github.io/2025/02/22/Release-to-CRAN/index.html">
+<meta property="og:site_name" content="DSpace">
+<meta property="og:description" content="How to Release an R Package to CRANBackgroundThe last few months, I’ve been focused on developing and releasing an R package. This toolkit was created based on a study by Dr. Romanescu. Many newcomers">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://songdihu.github.io/2025/02/22/Release-to-CRAN/cover.png">
+<meta property="article:published_time" content="2025-02-23T03:00:57.000Z">
+<meta property="article:author" content="Songdi Hu">
+<meta property="article:tag" content="Package">
+<meta property="article:tag" content="Release">
+<meta property="article:tag" content="CRAN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://songdihu.github.io/2025/02/22/Release-to-CRAN/cover.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Release to CRAN",
+  "url": "https://songdihu.github.io/2025/02/22/Release-to-CRAN/",
+  "image": "https://songdihu.github.io/2025/02/22/Release-to-CRAN/cover.png",
+  "datePublished": "2025-02-23T03:00:57.000Z",
+  "dateModified": "2025-02-23T03:00:57.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Songdi Hu",
+      "url": "https://songdihu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://songdihu.github.io/2025/02/22/Release-to-CRAN/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: Songdi Hu","link":"Link: ","source":"Source: DSpace","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Release to CRAN',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/cafe.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/2025/02/22/Release-to-CRAN/cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">DSpace</span></a><a class="nav-page-title" href="/"><span class="site-name">Release to CRAN</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Release to CRAN</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2025-02-23T03:00:57.000Z" title="Created 2025-02-22 21:00:57">2025-02-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="How-to-Release-an-R-Package-to-CRAN"><a href="#How-to-Release-an-R-Package-to-CRAN" class="headerlink" title="How to Release an R Package to CRAN"></a>How to Release an R Package to CRAN</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>The last few months, I’ve been focused on developing and releasing an R package. This toolkit was created based on a study by Dr. Romanescu. Many newcomers, myself included, often feel overwhelmed when it comes to properly releasing a package after preparing the code. Here is a concise introduction to address the question, “How?”</p>
+<p>Link to the released package: <a target="_blank" rel="noopener" href="https://cran.rstudio.com/web/packages/REffectivePred/index.html">https://cran.rstudio.com/web/packages/REffectivePred/index.html</a></p>
+<hr>
+<h2 id="1-TL-DR"><a href="#1-TL-DR" class="headerlink" title="1) TL;DR"></a>1) TL;DR</h2><ul>
+<li>Write clear docs for <strong>every exported function&#x2F;dataset</strong> (Rd files) and a <strong>package-level help page</strong>; add a <strong>vignette</strong> if helpful.</li>
+<li>Ensure <strong>policy compliance</strong>: fast examples, no writes outside temp dirs, graceful handling of network failures, portable code.</li>
+<li>Pass <strong>R CMD check –as-cran</strong> locally and on multiple platforms (win‑builder, R‑hub).</li>
+<li>Submit via the <strong>CRAN <a target="_blank" rel="noopener" href="https://cran.r-project.org/submit.html">web form</a></strong> (or <code>devtools::release()</code>), then respond promptly to reviewer emails.</li>
+</ul>
+<hr>
+<h2 id="2-Documentation-Requirements"><a href="#2-Documentation-Requirements" class="headerlink" title="2) Documentation Requirements"></a>2) Documentation Requirements</h2><p><strong>Help pages (Rd):</strong> One per exported function&#x2F;object and per dataset, with title&#x2F;description&#x2F;usage&#x2F;arguments&#x2F;value&#x2F;examples.<br><strong>Package help page:</strong> So <code>?yourpkg</code> works (alias <code>yourpkg-package</code>).<br><strong>Vignettes:</strong> Strongly recommended; show real workflows (declare <code>VignetteBuilder</code>).<br><strong>README &amp; NEWS.md:</strong> Installation&#x2F;quick start; user‑visible changes across versions.<br><strong>CITATION (optional):</strong> Provide a bibliographic entry in <code>inst/CITATION</code> if you want users to cite your package.</p>
+<p><strong>Examples must be:</strong> fast (seconds), deterministic, non‑interactive; avoid network or fail gracefully; <strong>write only to temp dirs</strong> and clean up.</p>
+<hr>
+<h2 id="3-Prepare-the-Package"><a href="#3-Prepare-the-Package" class="headerlink" title="3) Prepare the Package"></a>3) Prepare the Package</h2><ul>
+<li><strong>DESCRIPTION:</strong> Single maintainer email; meaningful Title&#x2F;Description; valid <code>License</code>; <code>URL</code>&#x2F;<code>BugReports</code>; use <code>Authors@R</code>.</li>
+<li><strong>NAMESPACE:</strong> Export the right symbols; import minimally; register S3&#x2F;S4 methods.</li>
+<li><strong>Dependencies:</strong> Use public APIs only; declare Imports&#x2F;Suggests appropriately.</li>
+<li><strong>Tests&#x2F;CI:</strong> Add <code>testthat</code>; configure GitHub Actions (Linux&#x2F;macOS&#x2F;Windows) for checks.</li>
+<li><strong>Performance:</strong> Keep examples&#x2F;vignettes&#x2F;tests quick; gate long parts behind <code>if (interactive())</code> or skip on CRAN.</li>
+</ul>
+<hr>
+<h2 id="4-Pre‑Flight-Checks"><a href="#4-Pre‑Flight-Checks" class="headerlink" title="4) Pre‑Flight Checks"></a>4) Pre‑Flight Checks</h2><ul>
+<li>Local: <code>R CMD check --as-cran</code> (or <code>devtools::check()</code>); eliminate all ERRORs&#x2F;WARNINGs and significant NOTEs.</li>
+<li>Windows: win‑builder (<code>devtools::check_win()</code>).</li>
+<li>Multi‑platform: R‑hub (v2) runners via the <code>rhub</code> package (<code>devtools::check_rhub()</code>).</li>
+<li>Keep a small <strong>cran-comments.md</strong> summarizing environments and check results.</li>
+</ul>
+<hr>
+<h2 id="5-Submission"><a href="#5-Submission" class="headerlink" title="5) Submission"></a>5) Submission</h2><ul>
+<li><strong>Option A: <a target="_blank" rel="noopener" href="https://cran.r-project.org/submit.html">Web form</a></strong> - Upload the source tarball, confirm the email, monitor <em>incoming</em> and your inbox.</li>
+<li><strong>Option B: From R</strong> - <code>devtools::release()</code> builds, checks, and submits (still sends a confirmation email).</li>
+</ul>
+<p><strong>After submission:</strong> Reply promptly (plain‑text). For routine updates, avoid very frequent small releases; be considerate of reverse dependencies.</p>
+<hr>
+<h2 id="6-Common-Pitfalls"><a href="#6-Common-Pitfalls" class="headerlink" title="6) Common Pitfalls"></a>6) Common Pitfalls</h2><ul>
+<li><strong>Slow examples&#x2F;vignettes&#x2F;tests</strong> → keep fast; mark long parts optional.</li>
+<li><strong>Writing outside temp dirs</strong> → always use <code>tempfile()/tempdir()</code>, clean up with <code>on.exit(unlink(...))</code>.</li>
+<li><strong>Fragile internet access</strong> → wrap with timeouts&#x2F;<code>tryCatch()</code>; do not error when offline.</li>
+<li><strong>Missing docs</strong> → no exported object without an Rd page; provide a package help page.</li>
+<li><strong>Non‑portable code&#x2F;private APIs</strong> → use public R API; avoid OS‑specific behavior unless guarded.</li>
+</ul>
+<hr>
+<h3 id="7-Quick-Start-scaffold-→-check-→-submit"><a href="#7-Quick-Start-scaffold-→-check-→-submit" class="headerlink" title="7) Quick Start (scaffold → check → submit)"></a>7) Quick Start (scaffold → check → submit)</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">usethis<span class="operator">::</span>create_package<span class="punctuation">(</span><span class="string">&quot;yourpkg&quot;</span><span class="punctuation">)</span></span><br><span class="line">usethis<span class="operator">::</span>use_readme_rmd<span class="punctuation">(</span><span class="punctuation">)</span>; usethis<span class="operator">::</span>use_vignette<span class="punctuation">(</span><span class="string">&quot;getting-started&quot;</span><span class="punctuation">)</span></span><br><span class="line">devtools<span class="operator">::</span>document<span class="punctuation">(</span><span class="punctuation">)</span>; devtools<span class="operator">::</span>check<span class="punctuation">(</span><span class="punctuation">)</span>        <span class="comment"># or: R CMD check --as-cran</span></span><br><span class="line"><span class="comment"># Optional platform checks:</span></span><br><span class="line">devtools<span class="operator">::</span>check_win_devel<span class="punctuation">(</span><span class="punctuation">)</span>; install.packages<span class="punctuation">(</span><span class="string">&quot;rhub&quot;</span><span class="punctuation">)</span>; rhub<span class="operator">::</span>check<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Submit when clean:</span></span><br><span class="line">devtools<span class="operator">::</span>release<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-DESCRIPTION-skeleton"><a href="#8-DESCRIPTION-skeleton" class="headerlink" title="8) DESCRIPTION skeleton"></a>8) DESCRIPTION skeleton</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Package: yourpkg</span><br><span class="line">Title: One-Line Summary</span><br><span class="line">Version: 0.1.0</span><br><span class="line">Authors@R: c(person(&quot;Your&quot;, &quot;Name&quot;, email = &quot;you@example.com&quot;, role = c(&quot;aut&quot;,&quot;cre&quot;)))</span><br><span class="line">Description: A concise description (one or two sentences).</span><br><span class="line">License: MIT + file LICENSE</span><br><span class="line">Encoding: UTF-8</span><br><span class="line">Depends: R (&gt;= 4.1)</span><br><span class="line">Imports:</span><br><span class="line">Suggests: knitr, rmarkdown, testthat (&gt;= 3.0.0)</span><br><span class="line">VignetteBuilder: knitr</span><br><span class="line">URL: https://github.com/you/yourpkg</span><br><span class="line">BugReports: https://github.com/you/yourpkg/issues</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Sources"><a href="#Sources" class="headerlink" title="Sources"></a>Sources</h2><ul>
+<li>CRAN Repository Policy (official).  </li>
+<li><em>Writing R Extensions</em> (official manual).  </li>
+<li>CRAN submission checklist.  </li>
+<li>devtools <code>release()</code> &#x2F; <code>submit_cran()</code> docs.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://songdihu.github.io">Songdi Hu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://songdihu.github.io/2025/02/22/Release-to-CRAN/">https://songdihu.github.io/2025/02/22/Release-to-CRAN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Package/">Package</a><a class="post-meta__tags" href="/tags/Release/">Release</a><a class="post-meta__tags" href="/tags/CRAN/">CRAN</a></div><div class="post-share"><div class="social-share" data-image="/2025/02/22/Release-to-CRAN/cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"><img class="cover" src="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail</div></div><div class="info-2"><div class="info-item-1">Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMailTransitioning an organization’s email infrastructure is often met with trepidation. This week, I successfully managed the migration of a company’s email system from GoDaddy-hosted Microsoft 365 to Amazon WorkMail.  Here is a summary of the experience, the technical hurdles encountered, and the best practices for a zero-downtime cutover.  Why Amazon WorkMail?While Microsoft 365 is a robust platform, Amazon WorkMail offers a s...</div></div></div></a><a class="pagination-related" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker"><img class="cover" src="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">How to Setup a WordPress Dynamic Blog with Docker</div></div><div class="info-2"><div class="info-item-1">WordPress Dynamic Blog with Docker - Step‑by‑Step Guide1) OverviewThis guide shows you how to run a production‑ready, dynamic WordPress blog with Docker. It uses docker-compose to orchestrate WordPress (PHP‑FPM), Nginx, and MariaDB with persistent volumes, automatic backups, and optional HTTPS via a modern reverse proxy.  2) Prerequisites Docker Engine + Docker Compose plugin A shell and a text editor (Optional) A domain name pointing to your server’s IP if you want HTTPS   3) Project Structu...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Songdi Hu</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongdiHu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/SongdiHu" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Photos from the road trip to Jasper&Banff are updated!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-Release-an-R-Package-to-CRAN"><span class="toc-number">1.</span> <span class="toc-text">How to Release an R Package to CRAN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">1.1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-TL-DR"><span class="toc-number">1.2.</span> <span class="toc-text">1) TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Documentation-Requirements"><span class="toc-number">1.3.</span> <span class="toc-text">2) Documentation Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Prepare-the-Package"><span class="toc-number">1.4.</span> <span class="toc-text">3) Prepare the Package</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Pre%E2%80%91Flight-Checks"><span class="toc-number">1.5.</span> <span class="toc-text">4) Pre‑Flight Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Submission"><span class="toc-number">1.6.</span> <span class="toc-text">5) Submission</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Common-Pitfalls"><span class="toc-number">1.7.</span> <span class="toc-text">6) Common Pitfalls</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Quick-Start-scaffold-%E2%86%92-check-%E2%86%92-submit"><span class="toc-number">1.7.1.</span> <span class="toc-text">7) Quick Start (scaffold → check → submit)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-DESCRIPTION-skeleton"><span class="toc-number">1.7.2.</span> <span class="toc-text">8) DESCRIPTION skeleton</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">1.8.</span> <span class="toc-text">Sources</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"><img src="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/EC2_HTTP_to_HTTPS_Redirect_Timeout_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"/></a><div class="content"><a class="title" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)">AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)</a><time datetime="2026-02-25T06:00:00.000Z" title="Created 2026-02-25 00:00:00">2026-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"><img src="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/Hexo_GHKey_imgPath_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"/></a><div class="content"><a class="title" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes">Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes</a><time datetime="2026-02-25T03:34:00.000Z" title="Created 2026-02-24 21:34:00">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"><img src="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"/></a><div class="content"><a class="title" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail">Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail</a><time datetime="2026-02-25T02:14:07.000Z" title="Created 2026-02-24 20:14:07">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN"><img src="/2025/02/22/Release-to-CRAN/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Release to CRAN"/></a><div class="content"><a class="title" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN">Release to CRAN</a><time datetime="2025-02-23T03:00:57.000Z" title="Created 2025-02-22 21:00:57">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker"><img src="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How to Setup a WordPress Dynamic Blog with Docker"/></a><div class="content"><a class="title" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker">How to Setup a WordPress Dynamic Blog with Docker</a><time datetime="2023-05-02T01:13:48.000Z" title="Created 2023-05-01 20:13:48">2023-05-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/2025/02/22/Release-to-CRAN/cover.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By Songdi Hu</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

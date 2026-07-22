@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2019 | DSpace</title><meta name="author" content="Songdi Hu"><meta name="copyright" content="Songdi Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="2019">
+<meta property="og:url" content="https://songdihu.github.io/archives/2020/index.html">
+<meta property="og:site_name" content="DSpace">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://songdihu.github.io/img/avatar.jpg">
+<meta property="article:author" content="Songdi Hu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://songdihu.github.io/img/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://songdihu.github.io/archives/2020/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: Songdi Hu","link":"Link: ","source":"Source: DSpace","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2019',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/cafe.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/Esplanade%20Riel%20pedestrian%20bridge.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">DSpace</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">2019</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">All Articles - 1</div><div class="article-sort"><div class="article-sort-item year">2020</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2020/08/10/Environment-Setup-for-a-Hexo-Blog-macOS-10-15-7/" title="Environment Setup for a Hexo Blog (MacOS 10.15.7)"><img src="/2020/08/10/Environment-Setup-for-a-Hexo-Blog-macOS-10-15-7/cover.png" alt="Environment Setup for a Hexo Blog (MacOS 10.15.7)" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2020-08-10T18:37:03.000Z" title="Created 2020-08-10 13:37:03">2020-08-10</time></div><a class="article-sort-item-title" href="/2020/08/10/Environment-Setup-for-a-Hexo-Blog-macOS-10-15-7/" title="Environment Setup for a Hexo Blog (MacOS 10.15.7)">Environment Setup for a Hexo Blog (MacOS 10.15.7)</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Songdi Hu</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongdiHu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/SongdiHu" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Photos from the road trip to Jasper&Banff are updated!</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"><img src="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/EC2_HTTP_to_HTTPS_Redirect_Timeout_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"/></a><div class="content"><a class="title" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)">AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)</a><time datetime="2026-02-25T06:00:00.000Z" title="Created 2026-02-25 00:00:00">2026-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"><img src="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/Hexo_GHKey_imgPath_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"/></a><div class="content"><a class="title" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes">Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes</a><time datetime="2026-02-25T03:34:00.000Z" title="Created 2026-02-24 21:34:00">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"><img src="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"/></a><div class="content"><a class="title" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail">Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail</a><time datetime="2026-02-25T02:14:07.000Z" title="Created 2026-02-24 20:14:07">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN"><img src="/2025/02/22/Release-to-CRAN/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Release to CRAN"/></a><div class="content"><a class="title" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN">Release to CRAN</a><time datetime="2025-02-23T03:00:57.000Z" title="Created 2025-02-22 21:00:57">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker"><img src="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How to Setup a WordPress Dynamic Blog with Docker"/></a><div class="content"><a class="title" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker">How to Setup a WordPress Dynamic Blog with Docker</a><time datetime="2023-05-02T01:13:48.000Z" title="Created 2023-05-01 20:13:48">2023-05-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Server-Maintenance/"><span class="card-category-list-name">Server Maintenance</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Server-Maintenance/Troubleshooting/"><span class="card-category-list-name">Troubleshooting</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web-Development/"><span class="card-category-list-name">Web Development</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Apache/" style="font-size: 1.1em; color: #999">Apache</a> <a href="/tags/WordPress/" style="font-size: 1.1em; color: #999">WordPress</a> <a href="/tags/AWS/" style="font-size: 1.3em; color: #99a1ac">AWS</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Overview/" style="font-size: 1.1em; color: #999">Overview</a> <a href="/tags/HTTPS/" style="font-size: 1.1em; color: #999">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 1.5em; color: #99a9bf">Hexo</a> <a href="/tags/Blog/" style="font-size: 1.5em; color: #99a9bf">Blog</a> <a href="/tags/CRAN/" style="font-size: 1.1em; color: #999">CRAN</a> <a href="/tags/Package/" style="font-size: 1.1em; color: #999">Package</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/CORS/" style="font-size: 1.1em; color: #999">CORS</a> <a href="/tags/Algorithms/" style="font-size: 1.1em; color: #999">Algorithms</a> <a href="/tags/Troubleshooting/" style="font-size: 1.1em; color: #999">Troubleshooting</a> <a href="/tags/Release/" style="font-size: 1.1em; color: #999">Release</a> <a href="/tags/SSH/" style="font-size: 1.1em; color: #999">SSH</a> <a href="/tags/Deploy/" style="font-size: 1.1em; color: #999">Deploy</a> <a href="/tags/Themes/" style="font-size: 1.1em; color: #999">Themes</a> <a href="/tags/UFW/" style="font-size: 1.1em; color: #999">UFW</a> <a href="/tags/Audriga/" style="font-size: 1.1em; color: #999">Audriga</a> <a href="/tags/Email-Migration/" style="font-size: 1.1em; color: #999">Email Migration</a> <a href="/tags/Amazon-WorkMail/" style="font-size: 1.1em; color: #999">Amazon WorkMail</a> <a href="/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/tags/Sort/" style="font-size: 1.1em; color: #999">Sort</a> <a href="/tags/Ubuntu/" style="font-size: 1.1em; color: #999">Ubuntu</a> <a href="/tags/Cloud-Infrastructure/" style="font-size: 1.1em; color: #999">Cloud Infrastructure</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              February 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/05/">
+            <span class="card-archive-list-date">
+              May 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/06/">
+            <span class="card-archive-list-date">
+              June 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/03/">
+            <span class="card-archive-list-date">
+              March 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/11/">
+            <span class="card-archive-list-date">
+              November 2021
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2020/08/">
+            <span class="card-archive-list-date">
+              August 2020
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">9</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-22T00:58:57.925Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/Esplanade%20Riel%20pedestrian%20bridge.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By Songdi Hu</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

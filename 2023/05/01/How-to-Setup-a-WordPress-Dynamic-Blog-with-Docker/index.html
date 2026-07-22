@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>How to Setup a WordPress Dynamic Blog with Docker | DSpace</title><meta name="author" content="Songdi Hu"><meta name="copyright" content="Songdi Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="WordPress Dynamic Blog with Docker - Step‑by‑Step Guide1) OverviewThis guide shows you how to run a production‑ready, dynamic WordPress blog with Docker. It uses docker-compose to orchestrate WordPres">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Setup a WordPress Dynamic Blog with Docker">
+<meta property="og:url" content="https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/index.html">
+<meta property="og:site_name" content="DSpace">
+<meta property="og:description" content="WordPress Dynamic Blog with Docker - Step‑by‑Step Guide1) OverviewThis guide shows you how to run a production‑ready, dynamic WordPress blog with Docker. It uses docker-compose to orchestrate WordPres">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png">
+<meta property="article:published_time" content="2023-05-02T01:13:48.000Z">
+<meta property="article:author" content="Songdi Hu">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="WordPress">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Setup a WordPress Dynamic Blog with Docker",
+  "url": "https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/",
+  "image": "https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png",
+  "datePublished": "2023-05-02T01:13:48.000Z",
+  "dateModified": "2023-05-02T01:13:48.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Songdi Hu",
+      "url": "https://songdihu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: Songdi Hu","link":"Link: ","source":"Source: DSpace","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'How to Setup a WordPress Dynamic Blog with Docker',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/cafe.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">DSpace</span></a><a class="nav-page-title" href="/"><span class="site-name">How to Setup a WordPress Dynamic Blog with Docker</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fas fa-circle-info"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fas fa-box-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">How to Setup a WordPress Dynamic Blog with Docker</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2023-05-02T01:13:48.000Z" title="Created 2023-05-01 20:13:48">2023-05-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="WordPress-Dynamic-Blog-with-Docker-Step‑by‑Step-Guide"><a href="#WordPress-Dynamic-Blog-with-Docker-Step‑by‑Step-Guide" class="headerlink" title="WordPress Dynamic Blog with Docker - Step‑by‑Step Guide"></a>WordPress Dynamic Blog with Docker - Step‑by‑Step Guide</h1><h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1) Overview"></a>1) Overview</h2><p>This guide shows you how to run a production‑ready, dynamic WordPress blog with Docker. It uses <strong>docker-compose</strong> to orchestrate <strong>WordPress (PHP‑FPM)</strong>, <strong>Nginx</strong>, and <strong>MariaDB</strong> with persistent volumes, automatic backups, and optional HTTPS via a modern reverse proxy.</p>
+<hr>
+<h2 id="2-Prerequisites"><a href="#2-Prerequisites" class="headerlink" title="2) Prerequisites"></a>2) Prerequisites</h2><ul>
+<li>Docker Engine + Docker Compose plugin</li>
+<li>A shell and a text editor</li>
+<li>(Optional) A domain name pointing to your server’s IP if you want HTTPS</li>
+</ul>
+<hr>
+<h2 id="3-Project-Structure"><a href="#3-Project-Structure" class="headerlink" title="3) Project Structure"></a>3) Project Structure</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wordpress-docker/</span><br><span class="line">├─ .env</span><br><span class="line">├─ docker-compose.yml</span><br><span class="line">├─ data/</span><br><span class="line">│  ├─ db/        # MariaDB data (persistent)</span><br><span class="line">│  └─ wp/        # WordPress uploads, plugins, themes (persistent)</span><br></pre></td></tr></table></figure>
+
+<p>Create folders:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p wordpress-docker/data/db wordpress-docker/data/wp</span><br><span class="line"><span class="built_in">cd</span> wordpress-docker</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-Environment-Variables-env"><a href="#4-Environment-Variables-env" class="headerlink" title="4) Environment Variables (.env)"></a>4) Environment Variables (<code>.env</code>)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Database</span><br><span class="line">MYSQL_ROOT_PASSWORD=change-me-strong</span><br><span class="line">MYSQL_DATABASE=wordpress</span><br><span class="line">MYSQL_USER=wpuser</span><br><span class="line">MYSQL_PASSWORD=change-me-strong</span><br><span class="line"></span><br><span class="line"># WordPress talks to DB at this hostname (service name)</span><br><span class="line">WORDPRESS_DB_HOST=db:3306</span><br><span class="line">WORDPRESS_DB_USER=wpuser</span><br><span class="line">WORDPRESS_DB_PASSWORD=change-me-strong</span><br><span class="line">WORDPRESS_DB_NAME=wordpress</span><br><span class="line"></span><br><span class="line"># Host port (e.g., http://localhost:8080)</span><br><span class="line">HOST_HTTP_PORT=8080</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Keep this file <strong>private</strong>. For team use, consider secrets managers.</p>
+</blockquote>
+<hr>
+<h2 id="5-Compose-File-docker-compose-yml"><a href="#5-Compose-File-docker-compose-yml" class="headerlink" title="5) Compose File (docker-compose.yml)"></a>5) Compose File (<code>docker-compose.yml</code>)</h2><p>A compact stack using official images and persistent volumes.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.9&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb:11</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">env_file:</span> <span class="string">.env</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_ROOT_PASSWORD=$&#123;MYSQL_ROOT_PASSWORD&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_DATABASE=$&#123;MYSQL_DATABASE&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_USER=$&#123;MYSQL_USER&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_PASSWORD=$&#123;MYSQL_PASSWORD&#125;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/db:/var/lib/mysql</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">wordpress:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">wordpress:6-apache</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">env_file:</span> <span class="string">.env</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;$&#123;HOST_HTTP_PORT&#125;:80&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">WORDPRESS_DB_HOST=$&#123;WORDPRESS_DB_HOST&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">WORDPRESS_DB_USER=$&#123;WORDPRESS_DB_USER&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">WORDPRESS_DB_PASSWORD=$&#123;WORDPRESS_DB_PASSWORD&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">WORDPRESS_DB_NAME=$&#123;WORDPRESS_DB_NAME&#125;</span></span><br><span class="line">      <span class="comment"># Optional hardening/config:</span></span><br><span class="line">      <span class="comment"># - WORDPRESS_CONFIG_EXTRA=define(&#x27;WP_MEMORY_LIMIT&#x27;,&#x27;128M&#x27;); define(&#x27;AUTOMATIC_UPDATER_DISABLED&#x27;, true);</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data/wp:/var/www/html</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Named volumes alternative (instead of bind mounts above):</span></span><br><span class="line"><span class="comment"># volumes:</span></span><br><span class="line"><span class="comment">#   db_data:</span></span><br><span class="line"><span class="comment">#   wp_data:</span></span><br></pre></td></tr></table></figure>
+
+<p>Why Apache image? It includes mod_rewrite for pretty permalinks out of the box. Swap to <code>wordpress:6-fpm</code> with an Nginx service if you prefer Nginx.</p>
+<hr>
+<h2 id="6-Launch"><a href="#6-Launch" class="headerlink" title="6) Launch"></a>6) Launch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br><span class="line">docker compose ps</span><br></pre></td></tr></table></figure>
+
+<p>Open: <code>http://localhost:8080</code> (or your server IP:port). Complete the WordPress installer wizard.</p>
+<hr>
+<h2 id="7-Themes-Plugins-Media-Dynamic-Content"><a href="#7-Themes-Plugins-Media-Dynamic-Content" class="headerlink" title="7) Themes, Plugins, Media (Dynamic Content)"></a>7) Themes, Plugins, Media (Dynamic Content)</h2><p>All uploads&#x2F;plugins&#x2F;themes live in <code>./data/wp</code> and persist across container restarts. Manage them from <strong>WP Admin → Plugins&#x2F;Themes</strong>. The stack is “dynamic” by default—no rebuilds needed for content changes.</p>
+<hr>
+<h2 id="8-Add-a-Domain-HTTPS-Optional-with-Caddy"><a href="#8-Add-a-Domain-HTTPS-Optional-with-Caddy" class="headerlink" title="8) Add a Domain + HTTPS (Optional, with Caddy)"></a>8) Add a Domain + HTTPS (Optional, with Caddy)</h2><p>If your DNS A&#x2F;AAAA records point to this host, Caddy can auto‑issue Let’s Encrypt certificates and proxy to WordPress.</p>
+<p><strong>Compose override</strong> (save as <code>docker-compose.override.yml</code>):</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.9&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">caddy:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">caddy:2</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;443:443&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./Caddyfile:/etc/caddy/Caddyfile:ro</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">wordpress</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>Caddyfile</code></strong> (replace <code>example.com</code>):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">example.com &#123;</span><br><span class="line">  reverse_proxy wordpress:80</span><br><span class="line">  encode zstd gzip</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>Visit <code>https://example.com</code>.</p>
+<hr>
+<h2 id="9-Backups-Upgrades"><a href="#9-Backups-Upgrades" class="headerlink" title="9) Backups &amp; Upgrades"></a>9) Backups &amp; Upgrades</h2><ul>
+<li><strong>Back up</strong>: snapshot <code>./data/db</code> and <code>./data/wp</code> (or dump DB with <code>mysqldump</code>).  </li>
+<li><strong>Upgrade WordPress</strong>: pull and recreate containers:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure></li>
+<li><strong>Upgrade plugins&#x2F;themes</strong>: via WP Admin. Keep them current for security.</li>
+</ul>
+<hr>
+<h2 id="10-Troubleshooting"><a href="#10-Troubleshooting" class="headerlink" title="10) Troubleshooting"></a>10) Troubleshooting</h2><ul>
+<li><strong>White screen&#x2F;500s after plugin</strong> → disable the plugin via WP Admin safe mode or remove it in <code>./data/wp/wp-content/plugins/&lt;plugin&gt;</code>.</li>
+<li><strong>Can’t write uploads</strong> → ensure host folder permissions allow the container to write (<code>www-data</code> inside container); try <code>chmod -R u+rwX,g+rwX ./data/wp</code> as needed.</li>
+<li><strong>DB connection errors</strong> → confirm <code>.env</code> creds and that <code>db</code> is healthy: <code>docker logs db</code>.</li>
+<li><strong>Permalinks</strong> → set <strong>Settings → Permalinks</strong> to “Post name”; Apache mod_rewrite is already enabled in the image.</li>
+</ul>
+<hr>
+<h2 id="11-Production-Tips"><a href="#11-Production-Tips" class="headerlink" title="11) Production Tips"></a>11) Production Tips</h2><ul>
+<li>Use <strong>strong, unique</strong> passwords (DB, WP admin).  </li>
+<li>Configure regular <strong>backups</strong> (files + DB).  </li>
+<li>Restrict admin access (e.g., fail2ban, firewall).  </li>
+<li>Consider <strong>separate network</strong> and a dedicated reverse proxy (Traefik&#x2F;Caddy&#x2F;Nginx) if hosting multiple sites.  </li>
+<li>For secrets, move beyond <code>.env</code> to a secrets manager in production environments.</li>
+</ul>
+<hr>
+<p><strong>You’re done!</strong> Deploy, create your first post, and enjoy your Dockerized WordPress 🎉</p>
+<hr>
+<h2 id="Sources-References"><a href="#Sources-References" class="headerlink" title="Sources&#x2F;References"></a>Sources&#x2F;References</h2><ul>
+<li>Official Docker image: <strong>WordPress</strong> (Apache &amp; FPM variants) — Docker Hub  </li>
+<li>Official Docker image: <strong>MariaDB</strong> — Docker Hub  </li>
+<li>Docker Docs — Compose file reference, volumes, bind mounts  </li>
+<li>Caddy Docs — Automatic HTTPS &amp; reverse proxy</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://songdihu.github.io">Songdi Hu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/">https://songdihu.github.io/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Blog/">Blog</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/WordPress/">WordPress</a></div><div class="post-share"><div class="social-share" data-image="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN"><img class="cover" src="/2025/02/22/Release-to-CRAN/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Release to CRAN</div></div><div class="info-2"><div class="info-item-1">How to Release an R Package to CRANBackgroundThe last few months, I’ve been focused on developing and releasing an R package. This toolkit was created based on a study by Dr. Romanescu. Many newcomers, myself included, often feel overwhelmed when it comes to properly releasing a package after preparing the code. Here is a concise introduction to address the question, “How?” Link to the released package: https://cran.rstudio.com/web/packages/REffectivePred/index.html  1) TL;DR Write clear docs...</div></div></div></a><a class="pagination-related" href="/2022/06/25/Sorting-Algorithms-Overview/" title="Sorting Algorithms Overview"><img class="cover" src="/2022/06/25/Sorting-Algorithms-Overview/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Sorting Algorithms Overview</div></div><div class="info-2"><div class="info-item-1">Sorting Algorithms - Concise OverviewThe main purpose of this article is to review the basics of sorting algorithms. 1) What Is Sorting?Sorting reorders items (numbers, strings, records) into a specified order. Your choice of algorithm affects speed, memory, stability, and robustness.  2) Taxonomy Comparison-based (general purpose): Insertion, Selection, Bubble, Merge, Quick, Heap, Shell, Introsort (C++ std::sort), Timsort (Python sort&#x2F;sorted). Theoretical lower bound: any comparison sor...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/08/10/Environment-Setup-for-a-Hexo-Blog-macOS-10-15-7/" title="Environment Setup for a Hexo Blog (MacOS 10.15.7)"><img class="cover" src="/2020/08/10/Environment-Setup-for-a-Hexo-Blog-macOS-10-15-7/cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="info-item-2">Environment Setup for a Hexo Blog (MacOS 10.15.7)</div></div><div class="info-2"><div class="info-item-1">Step 1: Node.jsDownload the LTS version of Node.js from the website. (shown below)     When the installation is finished, we can see that two modules are installed.  Node.js npm: a package manager for JS      Verify the installation. 1234$ node -vv14.15.1$ npm -v6.14.8  These two modules are mandatory for constructing our blog later. Step 2: HexoInstall Hexo as a global package: 1npm install -g hexo-cli  Check if it is correstly installed: 1hexo -v  The output should look like this:      Step...</div></div></div></a><a class="pagination-related" href="/2021/11/05/How-to-Apply-Hexo-Themes/" title="How to Find, Install, and Apply Hexo Themes"><img class="cover" src="/2021/11/05/How-to-Apply-Hexo-Themes/cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-05</div><div class="info-item-2">How to Find, Install, and Apply Hexo Themes</div></div><div class="info-2"><div class="info-item-1">Theme ResourcesThere are two places I would go to discover nice Hexo themes:  Hexo official website GitHub query add some filter criterias (e.g. query: “Hexo theme stars:&gt;1000  pushed:&gt;2023-01-01”)  it will be better to filter out the ones that are not maintained anymore (potential compatibility issues)    InstallationMethod 1 (for Hexo &lt; 5.0.0):The classic way to install the theme is to clone the entire repository into the themes/ directory.For example, to install the “Next” theme, ...</div></div></div></a><a class="pagination-related" href="/2022/03/09/Writing-and-Organizing-Hexo-Posts/" title="Writing and Organizing Hexo Posts"><img class="cover" src="/2022/03/09/Writing-and-Organizing-Hexo-Posts/cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-09</div><div class="info-item-2">Writing and Organizing Hexo Posts</div></div><div class="info-2"><div class="info-item-1">1. Writing ContentDirectly Create a New PostUse the Hexo CLI to create posts: 1hexo new post &quot;My First Post&quot; This generates a Markdown file in the source/_posts directory. Create a Draft before PublishUse the following Hexo command to create drafts: 1hexo new draft &quot;My New Draft&quot; A draft will be created in the source/_drafts directory. To publish the draft, execute:1hexo publish &quot;The Draft&quot;  Markdown FormattingWrite your content in Markdown for clean and simple f...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Songdi Hu</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongdiHu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/SongdiHu" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Photos from the road trip to Jasper&Banff are updated!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WordPress-Dynamic-Blog-with-Docker-Step%E2%80%91by%E2%80%91Step-Guide"><span class="toc-number">1.</span> <span class="toc-text">WordPress Dynamic Blog with Docker - Step‑by‑Step Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.1.</span> <span class="toc-text">1) Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Prerequisites"><span class="toc-number">1.2.</span> <span class="toc-text">2) Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Project-Structure"><span class="toc-number">1.3.</span> <span class="toc-text">3) Project Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Environment-Variables-env"><span class="toc-number">1.4.</span> <span class="toc-text">4) Environment Variables (.env)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Compose-File-docker-compose-yml"><span class="toc-number">1.5.</span> <span class="toc-text">5) Compose File (docker-compose.yml)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Launch"><span class="toc-number">1.6.</span> <span class="toc-text">6) Launch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Themes-Plugins-Media-Dynamic-Content"><span class="toc-number">1.7.</span> <span class="toc-text">7) Themes, Plugins, Media (Dynamic Content)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Add-a-Domain-HTTPS-Optional-with-Caddy"><span class="toc-number">1.8.</span> <span class="toc-text">8) Add a Domain + HTTPS (Optional, with Caddy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Backups-Upgrades"><span class="toc-number">1.9.</span> <span class="toc-text">9) Backups &amp; Upgrades</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Troubleshooting"><span class="toc-number">1.10.</span> <span class="toc-text">10) Troubleshooting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Production-Tips"><span class="toc-number">1.11.</span> <span class="toc-text">11) Production Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources-References"><span class="toc-number">1.12.</span> <span class="toc-text">Sources&#x2F;References</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"><img src="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/EC2_HTTP_to_HTTPS_Redirect_Timeout_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)"/></a><div class="content"><a class="title" href="/2026/02/25/AWS-EC2-Deployment-Guide-From-HTTP-Timeouts-to-Broken-Icons-CORS-Fixes/" title="AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)">AWS EC2 Deployment Guide: From HTTP Timeouts to Broken Icons (CORS Fixes)</a><time datetime="2026-02-25T06:00:00.000Z" title="Created 2026-02-25 00:00:00">2026-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"><img src="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/Hexo_GHKey_imgPath_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes"/></a><div class="content"><a class="title" href="/2026/02/24/Hexo-Troubleshooting-Guide-GitHub-SSH-Setup-and-Image-Path-Fixes/" title="Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes">Hexo Troubleshooting Guide: GitHub SSH Setup and Image Path Fixes</a><time datetime="2026-02-25T03:34:00.000Z" title="Created 2026-02-24 21:34:00">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"><img src="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail"/></a><div class="content"><a class="title" href="/2026/02/24/Seamless-Transition-Migrating-from-GoDaddy-M365-to-Amazon-WorkMail/" title="Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail">Seamless Transition: Migrating from GoDaddy (M365) to Amazon WorkMail</a><time datetime="2026-02-25T02:14:07.000Z" title="Created 2026-02-24 20:14:07">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN"><img src="/2025/02/22/Release-to-CRAN/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Release to CRAN"/></a><div class="content"><a class="title" href="/2025/02/22/Release-to-CRAN/" title="Release to CRAN">Release to CRAN</a><time datetime="2025-02-23T03:00:57.000Z" title="Created 2025-02-22 21:00:57">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker"><img src="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How to Setup a WordPress Dynamic Blog with Docker"/></a><div class="content"><a class="title" href="/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/" title="How to Setup a WordPress Dynamic Blog with Docker">How to Setup a WordPress Dynamic Blog with Docker</a><time datetime="2023-05-02T01:13:48.000Z" title="Created 2023-05-01 20:13:48">2023-05-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/2023/05/01/How-to-Setup-a-WordPress-Dynamic-Blog-with-Docker/cover.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By Songdi Hu</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
